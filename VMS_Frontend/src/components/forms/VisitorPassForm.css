@@ -1,0 +1,150 @@
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --bg-slate: #f8fafc;
+  --border: #e2e8f0;
+  --text-dark: #0f172a;
+  --text-gray: #64748b;
+  --danger: #ef4444;
+
+  --input-bg: #f8fafc;
+  --input-text: #334155;
+  --input-border: #cbd5e1;
+}
+
+body {
+  background-color: var(--bg-slate);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* HEADER */
+.form-header {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary), #4f46e5);
+  padding: 1.5rem;
+  color: white;
+}
+
+.form-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* CLOSE BUTTON */
+.close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* FORM BODY */
+.form-content {
+  padding: 2rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+label span {
+  color: var(--danger);
+}
+
+input,
+select,
+textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--input-border);
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  font-weight: 500;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+/* SUBMIT BUTTON */
+.btn-submit {
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1rem;
+  transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: var(--primary-hover);
+}
