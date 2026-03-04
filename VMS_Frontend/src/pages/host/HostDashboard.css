@@ -543,3 +543,37 @@ body {
   from { transform: translateY(20px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+
+/* --- Pie Chart Styles --- */
+.pie-chart-container {
+  position: relative;
+  height: 180px;
+  width: 100%;
+}
+
+.pie-chart-total {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.pie-chart-total .total-number {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.pie-chart-total .total-label {
+  font-size: 0.65rem;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-top: 2px;
+}

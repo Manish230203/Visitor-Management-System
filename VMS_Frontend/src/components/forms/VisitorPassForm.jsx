@@ -14,9 +14,8 @@ import {
 } from "lucide-react";
 import "./VisitorPassForm.css";
 
-export default function EmployeeRegistrationForm({ onClose }) {
+export default function VisitorPassForm({ onClose }) {
   const [formData, setFormData] = useState({
-    employeeID: "",
     name: "",
     email: "",
     phone: "",
@@ -25,6 +24,8 @@ export default function EmployeeRegistrationForm({ onClose }) {
     department: "",
     location: "",
     accessLevel: "",
+    typeOfIDProof: "",
+    idProofNumber: "",
     reasonOfVisit: "",
   });
 
@@ -36,30 +37,63 @@ export default function EmployeeRegistrationForm({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
-    alert("User/Visitor Added Successfully!");
+    alert("Visitor Invite Added Successfully!");
     
-    // Trigger the close action if provided
     if (onClose) onClose();
   };
+
+  // Unit options for editable dropdown
+  const unitOptions = [
+    "IT Services",
+    "Manufacturing",
+    "Logistics",
+    "Corporate",
+    "HR",
+    "Finance",
+    "Operations",
+    "Sales",
+    "Marketing"
+  ];
+
+  // Location options for editable dropdown
+  const locationOptions = [
+    "Pune Corporate",
+    "Bangalore HQ",
+    "Mumbai West",
+    "Delhi NCR",
+    "Chennai",
+    "Hyderabad",
+    "Kolkata"
+  ];
+
+  // Department options
+  const departmentOptions = [
+    "IT",
+    "Human Resources",
+    "Finance",
+    "Operations",
+    "Sales",
+    "Marketing",
+    "Legal",
+    "Customer Support"
+  ];
 
   return (
     <div className="form-container">
       {/* HEADER */}
       <div className="form-header">
         <h2>
-          <User /> Visitor Registration
+          <User /> New Invite
         </h2>
 
-        {/* CLOSE BUTTON */}
         <button
           type="button"
-          className="close-modal-btn"
+          className="form-close-btn"
           onClick={() => {
             if (onClose) onClose();
           }}
-          style={{ position: 'relative', top: '0', right: '0', background: 'white' }}
         >
-          <X size={22} color="#64748b" />
+          <X size={20} />
         </button>
       </div>
 
@@ -67,24 +101,7 @@ export default function EmployeeRegistrationForm({ onClose }) {
       <form className="form-content" onSubmit={handleSubmit}>
         <div className="form-grid">
 
-          {/* Employee ID */}
-          <div className="form-group">
-            <label>Employee ID <span>*</span></label>
-            <div style={{ position: "relative" }}>
-              <Hash size={18} style={iconStyle} />
-              <input
-                type="text"
-                name="employeeID"
-                required
-                placeholder="e.g. EMP-1001"
-                style={inputStyle}
-                value={formData.employeeID}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-
-          {/* Full Name */}
+          {/* Full Name - Mandatory */}
           <div className="form-group">
             <label>Full Name <span>*</span></label>
             <div style={{ position: "relative" }}>
@@ -102,14 +119,13 @@ export default function EmployeeRegistrationForm({ onClose }) {
           </div>
 
           {/* Email */}
-          <div className="form-group full-width">
-            <label>Email ID <span>*</span></label>
+          <div className="form-group">
+            <label>Email ID</label>
             <div style={{ position: "relative" }}>
               <Mail size={18} style={iconStyle} />
               <input
                 type="email"
                 name="email"
-                required
                 placeholder="employee@company.com"
                 style={inputStyle}
                 value={formData.email}
@@ -118,7 +134,7 @@ export default function EmployeeRegistrationForm({ onClose }) {
             </div>
           </div>
 
-          {/* Phone */}
+          {/* Phone - Mandatory */}
           <div className="form-group">
             <label>Phone Number <span>*</span></label>
             <div style={{ position: "relative" }}>
@@ -127,7 +143,7 @@ export default function EmployeeRegistrationForm({ onClose }) {
                 type="tel"
                 name="phone"
                 required
-                // placeholder="+91-9876543210"
+                placeholder="+91 9876543210"
                 style={inputStyle}
                 value={formData.phone}
                 onChange={handleChange}
@@ -151,79 +167,76 @@ export default function EmployeeRegistrationForm({ onClose }) {
             </div>
           </div>
 
-          {/* Unit */}
+          {/* Unit - Editable Dropdown */}
           <div className="form-group">
-            <label>Unit <span>*</span></label>
+            <label>Unit</label>
             <div style={{ position: "relative" }}>
               <Building size={18} style={iconStyle} />
-              <select
+              <input
+                type="text"
                 name="unit"
-                required
+                list="unit-options"
+                placeholder="Select or type unit"
                 style={inputStyle}
                 value={formData.unit}
                 onChange={handleChange}
-              >
-                <option value="">Select Unit</option>
-                <option value="IT Services">IT Services</option>
-                <option value="Manufacturing">Manufacturing</option>
-                <option value="Logistics">Logistics</option>
-                <option value="Corporate">Corporate</option>
-              </select>
+              />
+              <datalist id="unit-options">
+                {unitOptions.map((option) => (
+                  <option key={option} value={option} />
+                ))}
+              </datalist>
             </div>
           </div>
 
           {/* Department */}
           <div className="form-group">
-            <label>Department <span>*</span></label>
+            <label>Department</label>
             <div style={{ position: "relative" }}>
               <Briefcase size={18} style={iconStyle} />
               <select
-              
-                type="text"
                 name="department"
-                required
-                placeholder="e.g. Human Resources"
                 style={inputStyle}
                 value={formData.department}
                 onChange={handleChange}
               >
                 <option value="">Select Department</option>
-                <option value="IT">IT</option>
-                <option value="HR">Human Resources</option>
-                <option value="Finance">Finance</option>
-                <option value="Operations">Operations</option>
+                {departmentOptions.map((option) => (
+                  <option key={option} value={option}>{option}</option>
+                ))}
               </select>
             </div>
           </div>
 
-          {/* Location - Left Column */}
+          {/* Location - Editable Dropdown */}
           <div className="form-group">
-            <label>Location <span>*</span></label>
+            <label>Location</label>
             <div style={{ position: "relative" }}>
               <MapPin size={18} style={iconStyle} />
-              <select
+              <input
+                type="text"
                 name="location"
-                required
+                list="location-options"
+                placeholder="Select or type location"
                 style={inputStyle}
                 value={formData.location}
                 onChange={handleChange}
-              >
-                <option value="">Select Location</option>
-                <option value="PN_CORP_B">Pune Corporate</option>
-                <option value="BLR_HQ">Bangalore HQ</option>
-                <option value="MUM_WEST">Mumbai West</option>
-              </select>
+              />
+              <datalist id="location-options">
+                {locationOptions.map((option) => (
+                  <option key={option} value={option} />
+                ))}
+              </datalist>
             </div>
           </div>
 
-          {/* Access Level - Right Column */}
+          {/* Access Level */}
           <div className="form-group">
-            <label>Access Level <span>*</span></label>
+            <label>Access Level</label>
             <div style={{ position: "relative" }}>
               <ShieldCheck size={18} style={iconStyle} />
               <select
                 name="accessLevel"
-                required
                 style={inputStyle}
                 value={formData.accessLevel}
                 onChange={handleChange}
@@ -239,13 +252,12 @@ export default function EmployeeRegistrationForm({ onClose }) {
           </div>
 
           {/* Type of ID proof */}
-          <div className="form-group ">
-            <label>Type Of ID Proof<span>*</span></label>
+          <div className="form-group">
+            <label>Type Of ID Proof</label>
             <div style={{ position: "relative" }}>
               <ClipboardList size={18} style={iconStyle} />
               <select
                 name="typeOfIDProof"
-                required
                 style={inputStyle}
                 value={formData.typeOfIDProof}
                 onChange={handleChange}
@@ -262,14 +274,13 @@ export default function EmployeeRegistrationForm({ onClose }) {
 
           {/* ID proof number */}
           <div className="form-group">
-            <label>ID Proof NUmber <span>*</span></label>
+            <label>ID Proof Number</label>
             <div style={{ position: "relative" }}>
-              {/* <Phone size={18} style={iconStyle} /> */}
+              <Hash size={18} style={iconStyle} />
               <input
                 type="text"
                 name="idProofNumber"
-                required
-                // placeholder="+91-9876543210"
+                placeholder="Enter ID proof number"
                 style={inputStyle}
                 value={formData.idProofNumber}
                 onChange={handleChange}
@@ -277,7 +288,7 @@ export default function EmployeeRegistrationForm({ onClose }) {
             </div>
           </div>
 
-          {/* Reason - Full Width */}
+          {/* Reason of Visit - Mandatory - Full Width */}
           <div className="form-group full-width">
             <label>Reason of Visit <span>*</span></label>
             <div style={{ position: "relative" }}>
@@ -296,6 +307,7 @@ export default function EmployeeRegistrationForm({ onClose }) {
                 <option value="Training">Training</option>
                 <option value="Maintenance">Maintenance</option>
                 <option value="Work">Work</option>
+                <option value="Other">Other</option>
               </select>
             </div>
           </div>
@@ -304,7 +316,7 @@ export default function EmployeeRegistrationForm({ onClose }) {
 
         <button type="submit" className="btn-submit">
           <Save size={18} style={{ marginRight: 8 }} />
-          Add Visitor
+          Send Invite
         </button>
       </form>
     </div>
@@ -324,3 +336,4 @@ const inputStyle = {
   width: "100%",
   boxSizing: "border-box",
 };
+
