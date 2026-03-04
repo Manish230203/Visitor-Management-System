@@ -353,8 +353,8 @@ export default function HostDashboard() {
                 <h3 className="card-title">Visit Purpose</h3>
                 <span className="tag" style={{fontSize: '0.7rem'}}>{timeFilter}</span>
               </div>
-              <div style={{ padding: '1.5rem', position: 'relative', minWidth: 0 }}>
-                <div style={{ height: '200px', width: '100%' }}>
+              <div style={{ padding: '1.5rem' }}>
+                <div className="pie-chart-container">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -374,9 +374,9 @@ export default function HostDashboard() {
                       <Tooltip />
                     </PieChart>
                   </ResponsiveContainer>
-                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', pointerEvents: 'none' }}>
-                    <span style={{ fontSize: '1.5rem', fontWeight: 700, marginTop: '20px' }}>{getTotalVisitors()}</span>
-                    <span style={{ fontSize: '0.7rem', color: '#64748b', textTransform: 'uppercase', fontWeight: 600 }}>Total</span>
+                  <div className="pie-chart-total">
+                    <span className="total-number">{getTotalVisitors()}</span>
+                    <span className="total-label">Total</span>
                   </div>
                 </div>
                 <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -428,13 +428,7 @@ export default function HostDashboard() {
       {showInviteForm && (
         <div className="modal-overlay">
           <div className="modal-content-wrapper">
-            <button 
-              className="close-modal-btn" 
-              onClick={() => setShowInviteForm(false)}
-            >
-              <X size={24} color="#64748b" />
-            </button>
-            <VisitorPassForm onSuccess={() => setShowInviteForm(false)} />
+            <VisitorPassForm onClose={() => setShowInviteForm(false)} />
           </div>
         </div>
       )}

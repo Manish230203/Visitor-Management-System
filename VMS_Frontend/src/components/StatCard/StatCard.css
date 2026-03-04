@@ -1,0 +1,71 @@
+.vms-stat-card {
+  background: hsl(var(--card));
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid hsl(var(--border));
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.vms-stat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(224, 76%, 48%));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.vms-stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.vms-stat-card:hover::after {
+  opacity: 1;
+}
+
+.vms-stat-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.vms-stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: hsl(var(--muted-foreground));
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.vms-stat-value {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin: 0.25rem 0 0;
+  color: hsl(var(--foreground));
+}
+
+.vms-stat-trend {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.vms-stat-trend.positive {
+  color: hsl(var(--status-emerald-text));
+}
+
+.vms-stat-trend.negative {
+  color: hsl(var(--status-red-text));
+}
+
+.vms-stat-icon-box {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  display: flex;
+}
