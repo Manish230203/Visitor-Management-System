@@ -95,9 +95,14 @@ const Navbar = ({ role, userName }) => {
                 {role === "admin" && (
                   <>
                     <div className="vms-dropdown-label">Switch Dashboard</div>
-                    {location.pathname !== "/admin" && (
+                    {/* {location.pathname !== "/admin" && (
                       <button className="vms-dropdown-item" onClick={() => { navigate("/admin/dashboard/"); setDropdownOpen(false); }}>
                         <Shield size={16} /> Admin Dashboard
+                      </button>
+                    )} */}
+                    {location.pathname !== "/host" && (
+                      <button className="vms-dropdown-item" onClick={() => { navigate("/host/dashboard/"); setDropdownOpen(false); }}>
+                        <Shield size={16} /> Host Dashboard
                       </button>
                     )}
                     {location.pathname !== "/security" && (

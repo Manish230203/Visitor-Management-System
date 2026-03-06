@@ -10,7 +10,8 @@ import {
   Save,
   ClipboardList,
   X,
-  ShieldCheck
+  ShieldCheck,
+  Laptop
 } from "lucide-react";
 import "./VisitorPassForm.css";
 
@@ -27,6 +28,10 @@ export default function VisitorPassForm({ onClose }) {
     typeOfIDProof: "",
     idProofNumber: "",
     reasonOfVisit: "",
+    hasDevice: "No",
+    deviceType: "",
+    deviceMake: "",
+    deviceSerialNumber: "",
   });
 
   const handleChange = (e) => {
@@ -38,7 +43,7 @@ export default function VisitorPassForm({ onClose }) {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
     alert("Visitor Invite Added Successfully!");
-    
+
     if (onClose) onClose();
   };
 
@@ -311,6 +316,79 @@ export default function VisitorPassForm({ onClose }) {
               </select>
             </div>
           </div>
+
+          {/* Has Device? */}
+          <div className="form-group full-width">
+            <label>Carrying any Device/Laptop? <span>*</span></label>
+            <div style={{ position: "relative" }}>
+              <Laptop size={18} style={iconStyle} />
+              <select
+                name="hasDevice"
+                required
+                style={inputStyle}
+                value={formData.hasDevice}
+                onChange={handleChange}
+              >
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+              </select>
+            </div>
+          </div>
+
+          {formData.hasDevice === "Yes" && (
+            <>
+              {/* Device Type */}
+              <div className="form-group">
+                <label>Device Type <span>*</span></label>
+                <div style={{ position: "relative" }}>
+                  <Laptop size={18} style={iconStyle} />
+                  <input
+                    type="text"
+                    name="deviceType"
+                    required
+                    placeholder="e.g. Laptop, Tablet"
+                    style={inputStyle}
+                    value={formData.deviceType}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* Device Make */}
+              <div className="form-group">
+                <label>Device Make <span>*</span></label>
+                <div style={{ position: "relative" }}>
+                  <Laptop size={18} style={iconStyle} />
+                  <input
+                    type="text"
+                    name="deviceMake"
+                    required
+                    placeholder="e.g. Dell, Apple"
+                    style={inputStyle}
+                    value={formData.deviceMake}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* Device Serial Number */}
+              <div className="form-group full-width">
+                <label>Device Serial Number <span>*</span></label>
+                <div style={{ position: "relative" }}>
+                  <Hash size={18} style={iconStyle} />
+                  <input
+                    type="text"
+                    name="deviceSerialNumber"
+                    required
+                    placeholder="Enter Serial Number"
+                    style={inputStyle}
+                    value={formData.deviceSerialNumber}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </>
+          )}
 
         </div>
 

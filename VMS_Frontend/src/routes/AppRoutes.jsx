@@ -11,6 +11,7 @@ import SecurityDashboard from "../pages/SecurtiyDashboard/SecurityDashboard";
 import SuperAdminDashboard from "../pages/SuperAdmin/SuperAdminDashboard";
 
 import VisitorManagementLanding from "../pages/LandingPage/LandingPage";
+import DashboardSelection from "../pages/DashboardSelection/DashboardSelection";
 
 export default function AppRoutes() {
   return (
@@ -23,6 +24,10 @@ export default function AppRoutes() {
 
       <Route element={<VisitorManagementLanding />}>
         <Route path="/home/landingpage" element={<VisitorManagementLanding />} />
+      </Route>
+
+      <Route element={<DashboardSelection />}>
+        <Route path="/dashboards" element={<DashboardSelection />} />
       </Route>
 
       <Route element={<HostDashboard />}>
