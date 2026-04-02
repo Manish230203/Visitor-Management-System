@@ -1,0 +1,5 @@
+# Ignore frontend node_modules
+VMS_Frontend/node_modules/
+
+# Ignore backend cache
+VMS_Backend/__pycache__/
