@@ -1,0 +1,34 @@
+step 1:
+
+if(psql --version (Check the version of the postgresql))
+    You will get the version of the postgresql(psql (PostgreSQL) 17.x Like this)
+    
+else{
+    Now follow carefully:
+
+    Press Windows + S
+    Search → Environment Variables
+    Click → Edit the system environment variables
+    Click → Environment Variables
+    Under System variables → Select Path
+    Click Edit
+    Click New
+Paste:
+C:\Program Files\PostgreSQL\17\bin
+}
+
+step 2:Connect to PostgreSQL
+ psql -U postgres
+ If successful, you’ll see:
+ postgres=#
+
+step 3:If you want push your database(sql,Mysql,etc) use this command
+ pg_dump -U postgres -d (Your database name which you want to push) -f "F:\Intern_Project\VMA_Backup\(Where to save the file)schema.sql(your file name)"
+ Final: pg_dump -U postgres -d vms_db -f "F:\Intern_Project\VMA_Backup\schema.sql"
+
+
+For webcam we need to download this
+npm install react-webcam
+
+
+
